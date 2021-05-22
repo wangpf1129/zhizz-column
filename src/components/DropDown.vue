@@ -1,5 +1,5 @@
 <template>
-  <div class="userDropDown dropdown">
+  <div class="userDropDown dropdown" ref="dropdownRef">
     <a href="#" class="btn btn-outline-success my-2 px-4 dropdown-toggle" @click.prevent="toggleOpen">{{ title }}</a>
     <transition name="fade">
       <ul class="userDropDownBox dropdown-menu" :style="{display:'block'}" v-if="isOpen">
@@ -10,7 +10,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
+import {defineComponent, ref, watch} from 'vue';
+import {useClickOutside} from '@/hooks/useClickOutside';
 
 export default defineComponent({
   name: 'DropDown',
@@ -22,11 +23,19 @@ export default defineComponent({
   },
   setup() {
     const isOpen = ref(false);
+    const dropdownRef = ref<null | HTMLElement>(null);
     const toggleOpen = () => {
       isOpen.value = !isOpen.value;
     };
+    const isClickOutside = useClickOutside(dropdownRef);
+    watch(isClickOutside, () => {
+      // 如果 下拉框出现 并且 点击的区域是 外部 那么就隐藏下拉框
+      if (isOpen.value && isClickOutside.value) {
+        isOpen.value = false;
+      }
+    });
     return {
-      isOpen, toggleOpen
+      isOpen, toggleOpen, dropdownRef
     };
   }
 });
