@@ -3,12 +3,7 @@
     <a href="#" class="btn btn-outline-success my-2 px-4 dropdown-toggle" @click.prevent="toggleOpen">{{ title }}</a>
     <transition name="fade">
       <ul class="userDropDownBox dropdown-menu" :style="{display:'block'}" v-if="isOpen">
-        <li class="dropdown-item">
-          <span> 新建文章 </span>
-        </li>
-        <li class="dropdown-item">
-          <span> 编辑资料 </span>
-        </li>
+        <slot></slot>
       </ul>
     </transition>
   </div>
@@ -49,17 +44,6 @@ export default defineComponent({
     
     :hover {
       background-color: #f6f6f6;
-    }
-    
-    > li {
-      font-size: 14px;
-      padding: 13px 16px;
-      color: #8590a6;
-      outline: none;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      vertical-align: middle;
     }
   }
   
