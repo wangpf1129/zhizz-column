@@ -2,16 +2,7 @@
   <div class="container">
     <global-header :user="currentUser"></global-header>
     <router-view></router-view>
-    <footer class="text-center py-4 text-secondary bg-light mt-6">
-      <small>
-        <ul class="list-inline mb-0">
-          <li class="list-inline-item"> © 2021 清栀专栏</li>
-          <li class="list-inline-item"> 圆桌·发现</li>
-          <li class="list-inline-item"> 联系我们</li>
-          <li class="list-inline-item"> 更多</li>
-        </ul>
-      </small>
-    </footer>
+    <column-footer></column-footer>
   </div>
 </template>
 
@@ -19,6 +10,7 @@
 import {defineComponent} from 'vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GlobalHeader, {UserProps} from '@/components/GlobalHeader.vue';
+import ColumnFooter from '@/components/ColumnFooter.vue';
 
 const currentUser: UserProps = {
   isLogin: false,
@@ -26,7 +18,7 @@ const currentUser: UserProps = {
 };
 export default defineComponent({
   name: 'App',
-  components: {GlobalHeader},
+  components: {ColumnFooter, GlobalHeader},
   setup() {
     
     return {currentUser};
