@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <global-header :user="currentUser"></global-header>
-    <validate-form :style="{ marginTop: '108px' }">
+    <validate-form :style="{ marginTop: '108px' }" @form-submit="onFormSubmit">
       <div class="mb-3">
         <validate-input input-title="邮箱地址"
                         :rules="emailRules"
@@ -105,9 +105,12 @@ export default defineComponent({
       {type: 'required', message: '密码不能为空'},
       {type: 'password', message: '长度至少为8，至少含有一个字母和一个数字'},
     ];
-    const emailValue = ref('Wangpf@163.com');
-    const passwordValue = ref('w12345678');
-    return {list: testData, currentUser, emailRules, emailValue, passwordRules, passwordValue};
+    const emailValue = ref(''); //  Wangpf@163.com
+    const passwordValue = ref(''); // w12345678
+    const onFormSubmit = (result: boolean) => {
+      console.log('result', result);
+    };
+    return {list: testData, currentUser, emailRules, emailValue, passwordRules, passwordValue, onFormSubmit};
   },
 });
 </script>
