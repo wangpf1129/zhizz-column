@@ -45,7 +45,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .columnList {
-  margin: 108px auto 0;
+  margin: 48px 60px;
   
   .ColumnHomeTitle {
     font-size: 16px;
@@ -58,9 +58,11 @@ export default defineComponent({
     margin: 0 3px 32px;
     width: 100%;
   }
+  
   .columnItem {
     border: none;
   }
+  
   .columnTitle {
     overflow: hidden;
     text-overflow: ellipsis;
