@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <global-header :user="currentUser"></global-header>
-    <form :style="{ marginTop: '108px' }">
+    <validate-form :style="{ marginTop: '108px' }">
       <div class="mb-3">
         <validate-input input-title="邮箱地址"
                         :rules="emailRules"
@@ -18,8 +18,8 @@
                         placeholder="请输入密码"
         ></validate-input>
       </div>
-    </form>
-    <!-- <column-list :list="list"></column-list> -->
+    </validate-form>
+    <column-list :list="list"></column-list>
   </div>
 </template>
 
@@ -29,6 +29,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ColumnList, {ColumnProps} from '@/components/ColumnList.vue';
 import GlobalHeader, {UserProps} from '@/components/GlobalHeader.vue';
 import ValidateInput, {RulesProp} from '@/components/ValidateInput.vue';
+import ValidateForm from '@/components/ValidateForm.vue';
 
 const testData: ColumnProps[] = [
   {
@@ -94,7 +95,7 @@ const currentUser: UserProps = {
 };
 export default defineComponent({
   name: 'App',
-  components: {ValidateInput, GlobalHeader},
+  components: {ValidateForm, ValidateInput, GlobalHeader, ColumnList},
   setup() {
     const emailRules: RulesProp = [
       {type: 'required', message: '电子邮箱地址不能为空'},
