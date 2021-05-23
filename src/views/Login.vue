@@ -23,11 +23,13 @@
 import {defineComponent, ref} from 'vue';
 import ValidateForm from '@/components/ValidateForm.vue';
 import ValidateInput, {RulesProp} from '@/components/ValidateInput.vue';
+import {useRouter} from 'vue-router';
 
 export default defineComponent({
   name: 'Login',
   components: {ValidateInput, ValidateForm},
   setup() {
+    const router = useRouter();
     const emailRules: RulesProp = [
       {type: 'required', message: '电子邮箱地址不能为空'},
       {type: 'email', message: '请输入正确的电子邮箱格式'},
@@ -40,8 +42,11 @@ export default defineComponent({
     const passwordValue = ref(''); // w12345678
     const onFormSubmit = (result: boolean) => {
       console.log('result', result);
+      if (result) {
+        router.push('/');
+      }
     };
-    return {emailRules, passwordRules, emailValue, passwordValue,onFormSubmit};
+    return {emailRules, passwordRules, emailValue, passwordValue, onFormSubmit};
   }
 });
 </script>
