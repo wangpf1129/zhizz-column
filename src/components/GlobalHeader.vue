@@ -1,11 +1,11 @@
 <template>
   <div class="ColumnPageHeader">
     <nav class="header navbar bg-body justify-content-between px-4 py-0">
-      <a class="headerTitle navbar-brand" href="#"> 清栀专栏 </a>
+      <router-link to="/" class="headerTitle navbar-brand"> 清栀专栏</router-link>
       <ul v-if="!user.isLogin" class="headerButton list-inline mb-0">
         <li class="list-inline-item">
-          <a href="#" class="btn btn-outline-success  my-2 px-4 "> 登录 </a>
-          <a href="#" class="btn btn-outline-success  my-2 px-4"> 注册 </a>
+          <router-link to="/login" class="btn btn-outline-success  my-2 px-4 "> 登录</router-link>
+          <router-link to="/login" class="btn btn-outline-success  my-2 px-4"> 注册</router-link>
         </li>
       </ul>
       <ul v-else class="headerButton list-inline mb-0">
