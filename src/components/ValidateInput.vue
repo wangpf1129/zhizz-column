@@ -17,18 +17,8 @@
 <script lang="ts">
 import {defineComponent, onMounted, PropType, reactive} from 'vue';
 import {emitter} from '@/components/ValidateForm.vue';
+import {emailReg, passwordReg, RulesProp} from '@/common/inputRules';
 
-const emailReg = /^([A-Za-z0-9_\-.\u4e00-\u9fa5])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,8})$/;
-
-// 长度至少为8，至少含有一个字母和一个数字
-const passwordRef = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-interface RuleRef {
-  type: 'required' | 'email' | 'password';
-  message: string;
-}
-
-export type RulesProp = RuleRef[]
 export default defineComponent({
   name: 'ValidateInput',
   props: {
@@ -58,7 +48,7 @@ export default defineComponent({
               passed = emailReg.test(inputRef.value);
               break;
             case 'password':
-              passed = passwordRef.test(inputRef.value);
+              passed = passwordReg.test(inputRef.value);
               break;
             default:
               break;
@@ -94,14 +84,15 @@ export default defineComponent({
     padding: 4px 0;
   }
   
-  label{
+  label {
     position: relative;
+    
     input {
       width: 296px;
       padding: 8px 14px;
       font-size: 14px;
     }
-  
+    
     .invalid-feedback {
       font-size: 12px;
       position: absolute;

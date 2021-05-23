@@ -5,7 +5,7 @@
       <ul v-if="!user.isLogin" class="headerButton list-inline mb-0">
         <li class="list-inline-item">
           <router-link to="/login" class="btn btn-outline-success  my-2 px-4 "> 登录</router-link>
-          <router-link to="/login" class="btn btn-outline-success  my-2 px-4"> 注册</router-link>
+          <router-link to="/signup" class="btn btn-outline-success  my-2 px-4"> 注册</router-link>
         </li>
       </ul>
       <ul v-else class="headerButton list-inline mb-0">

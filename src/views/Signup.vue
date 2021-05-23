@@ -12,6 +12,14 @@
         ></validate-input>
       </div>
       <div class="login-input">
+        <validate-input input-title="昵称"
+                        :rules="nicknameRules"
+                        v-model:input-value="nicknameValue"
+                        type="text"
+                        placeholder="请输入昵称"
+        ></validate-input>
+      </div>
+      <div class="login-input">
         <validate-input input-title="密码"
                         :rules="passwordRules"
                         v-model:input-value="passwordValue"
@@ -19,10 +27,18 @@
                         placeholder="请输入密码"
         ></validate-input>
       </div>
-      <router-link to="/signup">还没有账户？去注册一个新的吧！</router-link>
+      <div class="login-input">
+        <validate-input input-title="重复密码"
+                        :rules="passwordRules"
+                        v-model:input-value="passwordValue"
+                        type="password"
+                        placeholder="请再次输入密码"
+        ></validate-input>
+      </div>
+      <router-link to="/login">已经有账户了？去登录</router-link>
       <template #submit>
         <div class="login-btn-wrap">
-          <span class="btn btn-outline-success"> 登录 </span>
+          <span class="btn btn-outline-success"> 注册 </span>
         </div>
       </template>
     </validate-form>
@@ -33,40 +49,32 @@
 import {defineComponent, ref} from 'vue';
 import ValidateForm from '@/components/ValidateForm.vue';
 import ValidateInput from '@/components/ValidateInput.vue';
-import {useRouter} from 'vue-router';
-import {RulesProp} from '@/common/inputRules';
+import {router} from '@/router';
+import {emailRules, passwordRules,nicknameRules} from '@/common/inputRules';
 
 export default defineComponent({
-  name: 'Login',
+  name: 'Signup',
   components: {ValidateInput, ValidateForm},
   setup() {
-    const router = useRouter();
-    const emailRules: RulesProp = [
-      {type: 'required', message: '电子邮箱地址不能为空'},
-      {type: 'email', message: '请输入正确的电子邮箱格式'},
-    ];
-    const passwordRules: RulesProp = [
-      {type: 'required', message: '密码不能为空'},
-      {type: 'password', message: '长度至少为8，至少含有一个字母和一个数字'},
-    ];
     const emailValue = ref(''); //  Wangpf@163.com
     const passwordValue = ref(''); // w12345678
+    const nicknameValue = ref('');
     const onFormSubmit = (result: boolean) => {
       console.log('result', result);
       if (result) {
         router.push('/');
       }
     };
-    return {emailRules, passwordRules, emailValue, passwordValue, onFormSubmit};
+    return {emailRules, passwordRules, emailValue, passwordValue, onFormSubmit,nicknameValue,nicknameRules};
   }
 });
 </script>
 
 <style lang="scss" scoped>
 .columnLogin {
-  margin: 108px auto 0;
+  margin: 64px auto 0;
   overflow: hidden;
-  height: 486px;
+  height: 686px;
   position: relative;
   max-width: 350px;
   border-radius: 8px;
