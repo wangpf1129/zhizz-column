@@ -1,22 +1,31 @@
 <template>
-  <validate-form :style="{ marginTop: '108px' }" @form-submit="onFormSubmit">
-    <div class="mb-3">
-      <validate-input input-title="邮箱地址"
-                      :rules="emailRules"
-                      v-model:input-value="emailValue"
-                      type="text"
-                      placeholder="请输入邮箱"
-      ></validate-input>
-    </div>
-    <div class="mb-3">
-      <validate-input input-title="密码"
-                      :rules="passwordRules"
-                      v-model:input-value="passwordValue"
-                      type="password"
-                      placeholder="请输入密码"
-      ></validate-input>
-    </div>
-  </validate-form>
+  <div class="columnLogin">
+    <img src="../assets/columnLogo.png" class="nice-logo" alt=""/>
+    <validate-form class="login-form" @form-submit="onFormSubmit">
+      <div class="login-input">
+        <validate-input input-title="邮箱地址"
+                        :rules="emailRules"
+                        v-model:input-value="emailValue"
+                        type="text"
+                        placeholder="请输入邮箱"
+                        class="login-input-item"
+        ></validate-input>
+      </div>
+      <div class="login-input">
+        <validate-input input-title="密码"
+                        :rules="passwordRules"
+                        v-model:input-value="passwordValue"
+                        type="password"
+                        placeholder="请输入密码"
+        ></validate-input>
+      </div>
+      <template #submit>
+        <div class="login-btn-wrap">
+          <span class="btn btn-outline-success"> 登录 </span>
+        </div>
+      </template>
+    </validate-form>
+  </div>
 </template>
 
 <script lang="ts">
@@ -52,5 +61,37 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
+.columnLogin {
+  margin: 108px auto 0;
+  overflow: hidden;
+  height: 486px;
+  position: relative;
+  max-width: 350px;
+  border-radius: 8px;
+  box-shadow: 1px 2px 15px rgba(0, 0, 0, .3);
+  background: #fff url(../assets/logbg.jpg) no-repeat bottom;
+  text-align: center;
+  
+  .nice-logo {
+    width: 55px;
+    margin: 40px 0 0;
+  }
+  
+  .login-form {
+    margin: 0 auto;
+    
+    .login-input {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .login-btn-wrap {
+      margin-top: 40px;
+      span{
+        width: 248px;
+        padding: 5px 12px;
+      }
+    }
+  }
+  
+}
 </style>

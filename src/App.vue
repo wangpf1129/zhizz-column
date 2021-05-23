@@ -32,4 +32,9 @@ body {
   margin: 0 auto;
   font-size: 14px;
 }
+
+.container {
+  background: url(https://static.zhihu.com/heifetz/assets/bg@2x.033e5b2d.png) repeat-x;
+  background-size: 20px 450px;
+}
 </style>

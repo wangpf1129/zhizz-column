@@ -1,15 +1,15 @@
 <template>
-  <div class="validate-input-container pb-3">
+  <div class="validate-input-container">
     <label>
       <span class="form-text">{{ inputTitle }}</span>
-      <input class="form-control"
+      <input class=" form-control"
              :class="{'is-invalid':inputRef.error}"
              v-model="inputRef.value"
              @blur="validateInput"
              @input="updateValue"
              v-bind="$attrs"
       >
-      <span v-if="inputRef.error" class="invalid-feedback">{{ inputRef.message }}</span>
+      <span class="invalid-feedback">{{ !!inputRef.error && inputRef.message }}</span>
     </label>
   </div>
 </template>
@@ -85,5 +85,30 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
+.validate-input-container {
+  .form-text {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    padding: 4px 0;
+  }
+  
+  label{
+    position: relative;
+    input {
+      width: 296px;
+      padding: 8px 14px;
+      font-size: 14px;
+    }
+  
+    .invalid-feedback {
+      font-size: 12px;
+      position: absolute;
+      top: 68px;
+      text-align: left;
+      padding: 4px 0;
+    }
+  }
+}
 </style>
