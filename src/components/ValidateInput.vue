@@ -3,12 +3,21 @@
     <label>
       <span class="form-text">{{ inputTitle }}</span>
       <input class=" form-control"
+             v-if="tag !== 'textarea' "
              :class="{'is-invalid':inputRef.error}"
              v-model="inputRef.value"
              @blur="validateInput"
              @input="updateValue"
              v-bind="$attrs"
-      >
+      />
+      <textarea class=" form-control"
+                v-else
+                :class="{'is-invalid':inputRef.error}"
+                v-model="inputRef.value"
+                @blur="validateInput"
+                @input="updateValue"
+                v-bind="$attrs"
+      ></textarea>
       <span class="invalid-feedback">{{ !!inputRef.error && inputRef.message }}</span>
     </label>
   </div>
@@ -17,7 +26,7 @@
 <script lang="ts">
 import {defineComponent, onMounted, PropType, reactive} from 'vue';
 import {emitter} from '@/components/ValidateForm.vue';
-import {emailReg, passwordReg, RulesProp} from '@/common/inputRules';
+import {emailReg, passwordReg, RulesProp, TagProp} from '@/common/inputRules';
 
 export default defineComponent({
   name: 'ValidateInput',
@@ -26,7 +35,11 @@ export default defineComponent({
       type: Array as PropType<RulesProp>
     },
     inputTitle: {type: String},
-    inputValue: {type: String}
+    inputValue: {type: String},
+    tag: {
+      type: String as PropType<TagProp>,
+      default: 'input'
+    }
   },
   inheritAttrs: false,
   setup(props, context) {
@@ -88,6 +101,7 @@ export default defineComponent({
     position: relative;
     width: 100%;
     padding: 0 20px;
+    
     input {
       padding: 8px 14px;
       font-size: 14px;
