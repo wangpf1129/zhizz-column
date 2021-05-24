@@ -86,9 +86,9 @@ export default defineComponent({
   
   label {
     position: relative;
-    
+    width: 100%;
+    padding: 0 20px;
     input {
-      width: 296px;
       padding: 8px 14px;
       font-size: 14px;
     }

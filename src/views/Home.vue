@@ -2,7 +2,9 @@
   <div class="columnHomeTop">
     <h1 class="columnHomeTop-logo">清栀专栏</h1>
     <h2 class="columnHomeTop-subTitle">随心写作，自由表达</h2>
-    <a href="#" class="columnHomeTop-writeButton  btn btn-outline-success mt-2 mb-1"> 开始写文章 </a>
+    <router-link to="/create" class="columnHomeTop-writeButton  btn btn-outline-success mt-2 mb-1">
+      开始写文章
+    </router-link>
   </div>
   <column-list :list="list"></column-list>
 </template>

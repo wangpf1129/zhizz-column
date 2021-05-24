@@ -1,8 +1,8 @@
 <template>
   <li class="dropdown-option" :class="{'is-disable': disabled}">
-    <a href="#" class="dropdown-option-item dropdown-item">
+    <router-link :to="path" class="dropdown-option-item dropdown-item">
       <slot></slot>
-    </a>
+    </router-link>
   </li>
 </template>
 
@@ -15,6 +15,10 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    path: {
+      type: String,
+      default: '/'
     }
   },
 });
