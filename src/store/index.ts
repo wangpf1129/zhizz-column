@@ -18,7 +18,7 @@ const store = createStore<GlobalDataProps>({
   state: {
     columns: testData,
     posts: testPosts,
-    user: {isLogin: true, name: 'Wangpf', columnId: 1}
+    user: {isLogin: true, name: 'Wangpf'}
   },
   getters: {
     getColumnById: (state) => (id: number) => {
