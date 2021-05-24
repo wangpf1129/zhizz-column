@@ -7,20 +7,19 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {computed, defineComponent} from 'vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import GlobalHeader, {UserProps} from '@/components/GlobalHeader.vue';
+import GlobalHeader from '@/components/GlobalHeader.vue';
 import ColumnFooter from '@/components/ColumnFooter.vue';
+import {useStore} from 'vuex';
+import {GlobalDataProps} from '@/store';
 
-const currentUser: UserProps = {
-  isLogin: false,
-  name: 'Wangpf',
-};
 export default defineComponent({
   name: 'App',
   components: {ColumnFooter, GlobalHeader},
   setup() {
-    
+    const store = useStore<GlobalDataProps>();
+    const currentUser = computed(() => store.state.user);
     return {currentUser};
   },
 });

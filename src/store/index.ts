@@ -1,23 +1,37 @@
 import {createStore} from 'vuex';
 import {testData, testPosts, ColumnProps, PostProps} from '@/common/testData';
 
-interface UserProps {
-  isLoading: boolean;
+export interface UserProps {
+  isLogin: boolean;
   name?: string;
-  id?: string;
+  id?: number;
 }
 
 export interface GlobalDataProps {
-  column: ColumnProps[];
+  columns: ColumnProps[];
   posts: PostProps[];
   user: UserProps
 }
 
 const store = createStore<GlobalDataProps>({
   state: {
-    column: testData,
+    columns: testData,
     posts: testPosts,
-    user: {isLoading: false}
+    user: {isLogin: false}
+  },
+  getters: {
+    getColumnById: (state) => (id: number) => {
+      return state.columns.find(column => column.id === id);
+    },
+    getPostsByCid: (state) => (Cid: number) => {
+      return state.posts.filter(post => post.columnId === Cid);
+    }
+  },
+  mutations: {
+    login(state) {
+      state.user = {...state.user, name: 'Wangpf', isLogin: true};
+      console.log(state.user);
+    }
   }
 });
 

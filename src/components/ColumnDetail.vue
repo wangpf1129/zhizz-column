@@ -16,17 +16,19 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useRoute} from 'vue-router';
-import {testData, testPosts} from '@/common/testData';
 import PostList from '@/components/PostList.vue';
+import {useStore} from 'vuex';
+import {GlobalDataProps} from '@/store';
 
 export default defineComponent({
   name: 'ColumnDetail',
   components: {PostList},
   setup() {
     const route = useRoute();
+    const store = useStore<GlobalDataProps>();
     const currentId = +route.params.id;
-    const column = testData.find(c => c.id === currentId);
-    const list = testPosts.filter(l => l.columnId === currentId);
+    const column = store.getters.getColumnById(currentId);
+    const list = store.getters.getPostsByCid(currentId);
     return {column, list};
   }
 });
@@ -37,6 +39,20 @@ export default defineComponent({
   margin: 108px auto 0;
   
   .columnInfo {
+    min-height: 180px;
+    img {
+      width: 102px;
+      height: 102px;
+    }
+    
+    .text-muted {
+      word-break: break-all;
+      display: -webkit-box;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
   }
 }
 </style>
