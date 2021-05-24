@@ -1,15 +1,24 @@
 import {createStore} from 'vuex';
+import {testData, testPosts, ColumnProps, PostProps} from '@/common/testData';
 
-export const store = createStore({
+interface UserProps {
+  isLoading: boolean;
+  name?: string;
+  id?: string;
+}
+
+export interface GlobalDataProps {
+  column: ColumnProps[];
+  posts: PostProps[];
+  user: UserProps
+}
+
+const store = createStore<GlobalDataProps>({
   state: {
-    count: 0
-  },
-  mutations: {
-    add(state) {
-      state.count++;
-    }
+    column: testData,
+    posts: testPosts,
+    user: {isLoading: false}
   }
 });
-console.log(store.state.count);
-store.commit('add');
-console.log(store.state.count);
+
+export default store;
