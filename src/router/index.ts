@@ -5,6 +5,7 @@ import ColumnDetail from '@/components/ColumnDetail.vue';
 import Signup from '@/views/Signup.vue';
 import CreatePost from '@/components/CreatePost.vue';
 import store from '@/store';
+import NotFound from '@/components/NotFound.vue';
 
 const history = createWebHashHistory();
 const router = createRouter({
@@ -36,6 +37,11 @@ const router = createRouter({
       name: 'CreatePost',
       component: CreatePost,
       meta: {requiredLogin: true}
+    },
+    {
+      path: '/:w+',
+      name: 'NotFound',
+      component: NotFound,  // 引入 组件
     },
   ]
 });

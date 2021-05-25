@@ -14,15 +14,18 @@ import {computed, defineComponent} from 'vue';
 import ColumnList from '@/components/ColumnList.vue';
 import {useStore} from 'vuex';
 import {GlobalDataProps} from '@/store';
+import axios from 'axios';
 
 export default defineComponent({
   name: 'Home',
   components: {ColumnList},
   setup() {
+    axios.defaults.baseURL = 'api/'
+    axios.get('columns').then(res => console.log(res.data));
     const store = useStore<GlobalDataProps>();
     const list = computed(() => store.state.columns);
     return {list};
-  }
+  },
 });
 </script>
 
