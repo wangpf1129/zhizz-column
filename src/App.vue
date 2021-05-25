@@ -4,7 +4,7 @@
     <h2>{{ error.message }}</h2>
     <loader v-if="isLoading" text="拼命加载中..." background="rgba(255,255,255,0.8)"></loader>
     <router-view></router-view>
-    <message type="error" :message="error.message"></message>
+    <message type="error" :message="error.message" v-if="error.message"></message>
     <column-footer></column-footer>
   </div>
 </template>
