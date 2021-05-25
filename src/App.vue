@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <global-header :user="currentUser"></global-header>
+    <h2 class="loading" v-if="isLoading">正在读取中....</h2>
     <router-view></router-view>
     <column-footer></column-footer>
   </div>
@@ -20,7 +21,8 @@ export default defineComponent({
   setup() {
     const store = useStore<GlobalDataProps>();
     const currentUser = computed(() => store.state.user);
-    return {currentUser};
+    const isLoading = computed(() => store.state.isLoading);
+    return {currentUser, isLoading};
   },
 });
 </script>
@@ -33,7 +35,16 @@ body {
 }
 
 .container {
+  position: relative;
   background: url(https://static.zhihu.com/heifetz/assets/bg@2x.033e5b2d.png) repeat-x;
   background-size: 20px 450px;
+  
+  .loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1001;
+  }
 }
 </style>
