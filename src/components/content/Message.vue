@@ -8,7 +8,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onUnmounted, PropType, ref} from 'vue';
+import {defineComponent, PropType, ref} from 'vue';
+import {useDOMCreate} from '@/hooks/useDOMCreate';
 
 export  type MessageType = 'success' | 'error' | 'default'
 export default defineComponent({
@@ -25,21 +26,16 @@ export default defineComponent({
   },
   emits: ['close-message'],
   setup(props, context) {
-    const node = document.createElement('div');
-    node.id = 'message';
-    document.body.appendChild(node);
-    onUnmounted(() => {
-      document.body.removeChild(node);
-    });
-    const isVisible = ref(true);
+    useDOMCreate('message');
+    const isVisible = ref(false);
     const classObject = {
       'alert-success': props.type === 'success',
       'alert-danger': props.type === 'error',
       'alert-primary': props.type === 'default'
     };
     const hide = () => {
-      isVisible.value = false;
-      context.emit('close-message', true);
+      isVisible.value = true;
+      context.emit('close-message', false);
     };
     return {classObject, hide};
   }
