@@ -1,5 +1,6 @@
 import {createStore} from 'vuex';
-import {testData, testPosts, ColumnProps, PostProps} from '@/common/testData';
+import {testPosts, ColumnProps, PostProps} from '@/common/testData';
+import axios from 'axios';
 
 export interface UserProps {
   isLogin: boolean;
@@ -16,13 +17,13 @@ export interface GlobalDataProps {
 
 const store = createStore<GlobalDataProps>({
   state: {
-    columns: testData,
+    columns: [],
     posts: testPosts,
     user: {isLogin: false, name: 'Wangpf'}
   },
   getters: {
     getColumnById: (state) => (id: number) => {
-      return state.columns.find(column => column.id === id);
+      return state.columns.find(column => +column._id === id);
     },
     getPostsByCid: (state) => (Cid: number) => {
       return state.posts.filter(post => post.columnId === Cid);
@@ -35,6 +36,17 @@ const store = createStore<GlobalDataProps>({
     },
     createNewPost(state, newPost) {
       state.posts.push(newPost);
+    },
+    fetchColumns(state, rawData) {
+      console.log(rawData.data);
+      state.columns = rawData.data.list;
+    }
+  },
+  actions: {
+    fetchColumns(context) {
+      axios.get('/columns').then(resp => {
+        context.commit('fetchColumns', resp.data);
+      });
     }
   }
 });

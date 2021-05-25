@@ -1,13 +1,13 @@
 <template>
   <div class="columnList row">
     <h3 class="ColumnHomeTitle">专栏 · 发现</h3>
-    <div class="col-3 mb-4 mt-2 " v-for="column in columnList" :key="column.id">
+    <div class="col-3 mb-4 mt-2 " v-for="column in columnList" :key="column._id">
       <div class="columnItem card h-100 shadow-sm">
         <div class="card-body text-center">
-          <img :src="column.avatar" :alt="column.title" class="rounded-circle w-25 my-3 border border-light">
+          <img :src="column.avatar.url" :alt="column.title" class="rounded-circle w-25 my-3 border border-light">
           <h5 class="columnTitle card-title mt-1">{{ column.title }}</h5>
           <p class="columnText card-text text-left">{{ column.description }}</p>
-          <router-link :to="`/column/${column.id}`" class="btn btn-outline-success mt-2 mb-1"> 进入专栏</router-link>
+          <router-link :to="`/column/${column._id}`" class="btn btn-outline-success mt-2 mb-1"> 进入专栏</router-link>
         </div>
       </div>
     </div>
@@ -27,7 +27,11 @@ export default defineComponent({
     const columnList = computed(() => {
       return props.list.map(column => {
         if (!column.avatar) {
-          column.avatar = require('@/assets/column.png');
+          column.avatar = {
+            url: require('@/assets/column.png')
+          };
+        } else {
+          column.avatar.url = column.avatar.url + '?x-oss-process=image/resize,m_pad,h_50,w_50';
         }
         return column;
       });

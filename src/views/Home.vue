@@ -10,19 +10,19 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent} from 'vue';
+import {computed, defineComponent, onMounted} from 'vue';
 import ColumnList from '@/components/ColumnList.vue';
 import {useStore} from 'vuex';
 import {GlobalDataProps} from '@/store';
-import axios from 'axios';
 
 export default defineComponent({
   name: 'Home',
   components: {ColumnList},
   setup() {
-    axios.defaults.baseURL = 'api/'
-    axios.get('columns').then(res => console.log(res.data));
     const store = useStore<GlobalDataProps>();
+    onMounted(() => {
+      store.dispatch('fetchColumns');
+    });
     const list = computed(() => store.state.columns);
     return {list};
   },
