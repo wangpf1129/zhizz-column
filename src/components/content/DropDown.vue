@@ -1,6 +1,9 @@
 <template>
   <div class="userDropDown dropdown" ref="dropdownRef">
-    <a href="#" class="btn btn-outline-success my-2 px-4 dropdown-toggle" @click.prevent="toggleOpen">{{ title }}</a>
+    <a href="#" class="btn btn-outline-success my-2 px-4 dropdown-toggle"
+       @click.prevent="toggleOpen">
+      {{ title }}
+    </a>
     <transition name="fade">
       <ul class="userDropDownBox dropdown-menu" :style="{display:'block'}" v-if="isOpen">
         <slot></slot>
@@ -18,7 +21,7 @@ export default defineComponent({
   props: {
     title: {
       type: String,
-      required: true
+      default: undefined
     }
   },
   setup() {

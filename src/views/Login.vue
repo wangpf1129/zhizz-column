@@ -52,12 +52,20 @@ export default defineComponent({
       {type: 'required', message: '密码不能为空'},
       {type: 'password', message: '长度至少为8，至少含有一个字母和一个数字'},
     ];
-    const emailValue = ref('Wangpf@163.com'); //  Wangpf@163.com
-    const passwordValue = ref('w12345678'); // w12345678
+    const emailValue = ref('111@test.com'); //  Wangpf@163.com
+    const passwordValue = ref('111111'); // w12345678
     const onFormSubmit = (result: boolean) => {
       if (result) {
-        router.push('/');
-        store.commit('login');
+        const payload = {
+          email: emailValue.value,
+          password: passwordValue.value
+        };
+        store.dispatch('loginAndFetchCurrentUser', payload).then(data => {
+          console.log('data:', data);
+          router.push('/');
+        }).catch(err => {
+          console.log(err);
+        });
       }
     };
     return {emailRules, passwordRules, emailValue, passwordValue, onFormSubmit};

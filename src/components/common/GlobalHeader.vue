@@ -10,7 +10,7 @@
       </ul>
       <ul v-else class="headerButton list-inline mb-0">
         <li class="list-inline-item">
-          <drop-down :title="user.name">
+          <drop-down :title="user.nickName">
             <drop-down-item path="/create">新建文章</drop-down-item>
             <drop-down-item> 编辑资料</drop-down-item>
             <drop-down-item> 退出登录</drop-down-item>
@@ -35,7 +35,7 @@ export default defineComponent({
       type: Object as PropType<UserProps>,
       required: true
     }
-  },
+  }
 });
 </script>
 
