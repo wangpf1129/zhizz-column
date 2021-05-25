@@ -4,6 +4,7 @@
     <h2>{{ error.message }}</h2>
     <loader v-if="isLoading" text="拼命加载中..." background="rgba(255,255,255,0.8)"></loader>
     <router-view></router-view>
+    <message type="error" :message="error.message"></message>
     <column-footer></column-footer>
   </div>
 </template>
@@ -17,10 +18,11 @@ import {useStore} from 'vuex';
 import {GlobalDataProps} from '@/store';
 import Loader from '@/components/content/Loader.vue';
 import axios from 'axios';
+import Message from '@/components/content/Message.vue';
 
 export default defineComponent({
   name: 'App',
-  components: {Loader, ColumnFooter, GlobalHeader},
+  components: {Message, Loader, ColumnFooter, GlobalHeader},
   setup() {
     const store = useStore<GlobalDataProps>();
     const currentUser = computed(() => store.state.user);
