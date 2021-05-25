@@ -1,16 +1,14 @@
 <template>
   <div class="container">
     <global-header :user="currentUser"></global-header>
-    <h2>{{ error.message }}</h2>
     <loader v-if="isLoading" text="拼命加载中..." background="rgba(255,255,255,0.8)"></loader>
     <router-view></router-view>
-    <message type="error" :message="error.message" v-if="error.message"></message>
     <column-footer></column-footer>
   </div>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, onMounted} from 'vue';
+import {computed, defineComponent, onMounted, watch} from 'vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GlobalHeader from '@/components/common/GlobalHeader.vue';
 import ColumnFooter from '@/components/common/ColumnFooter.vue';
@@ -18,11 +16,11 @@ import {useStore} from 'vuex';
 import {GlobalDataProps} from '@/store';
 import Loader from '@/components/content/Loader.vue';
 import axios from 'axios';
-import Message from '@/components/content/Message.vue';
+import {createMessage} from '@/components/content/createMessage';
 
 export default defineComponent({
   name: 'App',
-  components: {Message, Loader, ColumnFooter, GlobalHeader},
+  components: {Loader, ColumnFooter, GlobalHeader},
   setup() {
     const store = useStore<GlobalDataProps>();
     const currentUser = computed(() => store.state.user);
@@ -33,6 +31,12 @@ export default defineComponent({
       if (!currentUser.value.isLogin && token.value) {
         axios.defaults.headers.common.Authorization = `Bearer ${token.value}`;
         store.dispatch('fetchCurrentUser');
+      }
+    });
+    watch(() => store.state.error, () => {
+      const {status, message} = error.value;
+      if (status && message) {
+        createMessage(message, 'error');
       }
     });
     return {currentUser, isLoading, error};

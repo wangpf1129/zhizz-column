@@ -7,6 +7,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'api';
 axios.interceptors.request.use(config => {
+  store.commit('setError', {status: false, message: ''});
   store.commit('setLoading', true);
   return config;
 });
