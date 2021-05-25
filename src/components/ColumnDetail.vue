@@ -1,8 +1,9 @@
 <template>
-  <div class="columnDetailPage w-75 mx-auto">
+  <div v-if="column" class="columnDetailPage w-75 mx-auto">
     <div class="columnInfo row  border-bottom py-3 align-items-center">
       <div class="col-4 text-center">
-        <img :src="column.avatar" :alt="column.title" class="rounded-circle border">
+        <img :src="column.avatar && column.avatar.url"
+             :alt="column.title" class="rounded-circle border">
       </div>
       <div class="col-8">
         <h4>{{ column.title }}</h4>
@@ -14,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {computed, defineComponent, onMounted} from 'vue';
 import {useRoute} from 'vue-router';
 import PostList from '@/components/PostList.vue';
 import {useStore} from 'vuex';
@@ -26,9 +27,13 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const store = useStore<GlobalDataProps>();
-    const currentId = +route.params.id;
-    const column = store.getters.getColumnById(currentId);
-    const list = store.getters.getPostsByCid(currentId);
+    const currentId = route.params.id;
+    onMounted(() => {
+      store.dispatch('fetchColumn', currentId);
+      store.dispatch('fetchPosts', currentId);
+    });
+    const column = computed(() => store.getters.getColumnById(currentId));
+    const list = computed(() => store.getters.getPostsByCid(currentId));
     return {column, list};
   }
 });
@@ -40,6 +45,7 @@ export default defineComponent({
   
   .columnInfo {
     min-height: 180px;
+    
     img {
       width: 102px;
       height: 102px;

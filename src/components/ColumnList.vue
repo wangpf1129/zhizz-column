@@ -4,7 +4,8 @@
     <div class="col-3 mb-4 mt-2 " v-for="column in columnList" :key="column._id">
       <div class="columnItem card h-100 shadow-sm">
         <div class="card-body text-center">
-          <img :src="column.avatar.url" :alt="column.title" class="rounded-circle w-25 my-3 border border-light">
+          <img :src="column.avatar && column.avatar.url" :alt="column.title"
+               class="rounded-circle w-25 my-3 border border-light">
           <h5 class="columnTitle card-title mt-1">{{ column.title }}</h5>
           <p class="columnText card-text text-left">{{ column.description }}</p>
           <router-link :to="`/column/${column._id}`" class="btn btn-outline-success mt-2 mb-1"> 进入专栏</router-link>
@@ -16,7 +17,7 @@
 
 <script lang="ts">
 import {defineComponent, computed, PropType} from 'vue';
-import {ColumnProps} from '@/common/testData';
+import {ColumnProps} from '@/store';
 
 export default defineComponent({
   name: 'ColumnList',

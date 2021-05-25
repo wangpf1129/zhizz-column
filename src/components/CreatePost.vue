@@ -36,8 +36,7 @@ import {defineComponent, ref} from 'vue';
 import ValidateForm from '@/components/ValidateForm.vue';
 import ValidateInput from '@/components/ValidateInput.vue';
 import {RulesProp} from '@/common/inputRules';
-import store from '@/store';
-import {PostProps} from '@/common/testData';
+import store, {PostProps} from '@/store';
 import router from '@/router';
 
 export default defineComponent({
@@ -57,10 +56,10 @@ export default defineComponent({
         const {columnId} = store.state.user;
         if (columnId) {
           const newPost: PostProps = {
-            id: new Date().getTime(),
+            _id: new Date().getTime() + '',
             title: titleValue.value,
             content: contentValue.value,
-            columnId,
+            column: columnId + '',
             createdAt: new Date().toLocaleString()
           };
           store.commit('createNewPost', newPost);
