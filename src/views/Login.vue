@@ -37,6 +37,7 @@ import {useRouter} from 'vue-router';
 import {RulesProp} from '@/common/inputRules';
 import {useStore} from 'vuex';
 import {GlobalDataProps} from '@/store';
+import {createMessage} from '@/components/content/createMessage';
 
 export default defineComponent({
   name: 'Login',
@@ -61,7 +62,7 @@ export default defineComponent({
           password: passwordValue.value
         };
         store.dispatch('loginAndFetchCurrentUser', payload).then(data => {
-          console.log('data:', data);
+          createMessage('登录成功', 'success');
           router.push('/');
         }).catch(err => {
           console.log(err);

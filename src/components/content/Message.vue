@@ -1,11 +1,9 @@
 <template>
   <teleport to="#message">
-    <transition name="fade">
-      <div class="messageInfo alert" :class="classObject">
-        <span>{{ message }}</span>
-        <button type="button" class="btn-close" aria-label="Close" @click.prevent="hide"></button>
-      </div>
-    </transition>
+    <div class="messageInfo alert" :class="classObject">
+      <span>{{ message }}</span>
+      <button type="button" class="btn-close" aria-label="Close" @click.prevent="hide"></button>
+    </div>
   </teleport>
 </template>
 
@@ -57,18 +55,6 @@ export default defineComponent({
   text-align: center;
   z-index: 1002;
   opacity: 0.7;
-  transition: opacity .3s, transform .4s, top .4s;
   overflow: hidden;
-}
-
-.fade-enter-active {
-  transition: all .3s;
-}
-.fade-leave-active {
-  transition: all .3s;
-}
-.fade-enter, .fade-leave-to {
-  top: 20px;
-  opacity: 0;
 }
 </style>

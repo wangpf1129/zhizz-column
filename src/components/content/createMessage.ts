@@ -1,7 +1,7 @@
 import {createApp} from 'vue';
 import Message from '@/components/content/Message.vue';
 
-export const createMessage = (message: string, type: string, timeout = 1500):void => {
+export const createMessage = (message: string, type: string, timeout = 2000): void => {
   const messageInstance = createApp(Message, {message, type});
   const node = document.createElement('div');
   document.body.appendChild(node);
