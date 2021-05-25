@@ -33,8 +33,8 @@
 
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
-import ValidateForm from '@/components/ValidateForm.vue';
-import ValidateInput from '@/components/ValidateInput.vue';
+import ValidateForm from '@/components/content/ValidateForm.vue';
+import ValidateInput from '@/components/content/ValidateInput.vue';
 import {RulesProp} from '@/common/inputRules';
 import store, {PostProps} from '@/store';
 import router from '@/router';

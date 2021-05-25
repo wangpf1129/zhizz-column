@@ -47,8 +47,8 @@
 
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
-import ValidateForm from '@/components/ValidateForm.vue';
-import ValidateInput from '@/components/ValidateInput.vue';
+import ValidateForm from '@/components/content/ValidateForm.vue';
+import ValidateInput from '@/components/content/ValidateInput.vue';
 import router from '@/router';
 import {emailRules, passwordRules, nicknameRules} from '@/common/inputRules';
 

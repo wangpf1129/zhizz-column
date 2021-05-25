@@ -23,8 +23,8 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import DropDown from '@/components/DropDown.vue';
-import DropDownItem from '@/components/DropDownItem.vue';
+import DropDown from '@/components/content/DropDown.vue';
+import DropDownItem from '@/components/content/DropDownItem.vue';
 import {UserProps} from '@/store';
 
 export default defineComponent({

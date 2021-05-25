@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import {defineComponent, onMounted, PropType, reactive} from 'vue';
-import {emitter} from '@/components/ValidateForm.vue';
+import {emitter} from '@/components/content/ValidateForm.vue';
 import {emailReg, passwordReg, RulesProp, TagProp} from '@/common/inputRules';
 
 export default defineComponent({

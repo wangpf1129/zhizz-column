@@ -17,7 +17,7 @@
 <script lang="ts">
 import {computed, defineComponent, onMounted} from 'vue';
 import {useRoute} from 'vue-router';
-import PostList from '@/components/PostList.vue';
+import PostList from '@/components/common/PostList.vue';
 import {useStore} from 'vuex';
 import {GlobalDataProps} from '@/store';
 

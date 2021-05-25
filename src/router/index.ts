@@ -1,11 +1,11 @@
 import {createRouter, createWebHashHistory} from 'vue-router';
 import Home from '@/views/Home.vue';
 import Login from '@/views/Login.vue';
-import ColumnDetail from '@/components/ColumnDetail.vue';
+import ColumnDetail from '@/components/common/ColumnDetail.vue';
 import Signup from '@/views/Signup.vue';
-import CreatePost from '@/components/CreatePost.vue';
+import CreatePost from '@/components/common/CreatePost.vue';
 import store from '@/store';
-import NotFound from '@/components/NotFound.vue';
+import NotFound from '@/components/common/NotFound.vue';
 
 const history = createWebHashHistory();
 const router = createRouter({

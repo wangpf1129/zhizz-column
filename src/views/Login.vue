@@ -31,8 +31,8 @@
 
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
-import ValidateForm from '@/components/ValidateForm.vue';
-import ValidateInput from '@/components/ValidateInput.vue';
+import ValidateForm from '@/components/content/ValidateForm.vue';
+import ValidateInput from '@/components/content/ValidateInput.vue';
 import {useRouter} from 'vue-router';
 import {RulesProp} from '@/common/inputRules';
 import {useStore} from 'vuex';

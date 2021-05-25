@@ -10,8 +10,8 @@
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import GlobalHeader from '@/components/GlobalHeader.vue';
-import ColumnFooter from '@/components/ColumnFooter.vue';
+import GlobalHeader from '@/components/common/GlobalHeader.vue';
+import ColumnFooter from '@/components/common/ColumnFooter.vue';
 import {useStore} from 'vuex';
 import {GlobalDataProps} from '@/store';
 
