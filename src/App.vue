@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <global-header :user="currentUser"></global-header>
-    <h2 class="loading" v-if="isLoading">正在读取中....</h2>
+    <loader v-if="isLoading" text="拼命加载中..." background="rgba(255,255,255,0.8)"></loader>
     <router-view></router-view>
     <column-footer></column-footer>
   </div>
@@ -14,10 +14,11 @@ import GlobalHeader from '@/components/common/GlobalHeader.vue';
 import ColumnFooter from '@/components/common/ColumnFooter.vue';
 import {useStore} from 'vuex';
 import {GlobalDataProps} from '@/store';
+import Loader from '@/components/content/Loader.vue';
 
 export default defineComponent({
   name: 'App',
-  components: {ColumnFooter, GlobalHeader},
+  components: {Loader, ColumnFooter, GlobalHeader},
   setup() {
     const store = useStore<GlobalDataProps>();
     const currentUser = computed(() => store.state.user);
@@ -38,13 +39,5 @@ body {
   position: relative;
   background: url(https://static.zhihu.com/heifetz/assets/bg@2x.033e5b2d.png) repeat-x;
   background-size: 20px 450px;
-  
-  .loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    z-index: 1001;
-  }
 }
 </style>
