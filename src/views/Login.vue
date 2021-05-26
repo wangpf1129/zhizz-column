@@ -34,7 +34,7 @@ import {defineComponent, ref} from 'vue';
 import ValidateForm from '@/components/content/ValidateForm.vue';
 import ValidateInput from '@/components/content/ValidateInput.vue';
 import {useRouter} from 'vue-router';
-import {RulesProp} from '@/common/inputRules';
+import {emailRules, passwordRules} from '@/common/inputRules';
 import {useStore} from 'vuex';
 import {GlobalDataProps} from '@/store';
 import {createMessage} from '@/components/content/createMessage';
@@ -45,16 +45,8 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const store = useStore<GlobalDataProps>();
-    const emailRules: RulesProp = [
-      {type: 'required', message: '电子邮箱地址不能为空'},
-      {type: 'email', message: '请输入正确的电子邮箱格式'},
-    ];
-    const passwordRules: RulesProp = [
-      {type: 'required', message: '密码不能为空'},
-      {type: 'password', message: '长度至少为8，至少含有一个字母和一个数字'},
-    ];
-    const emailValue = ref('111@test.com'); //  Wangpf@163.com
-    const passwordValue = ref('111111'); // w12345678
+    const emailValue = ref('Wangpf@163.com'); //  Wangpf@163.com
+    const passwordValue = ref('12345678'); // 12345678
     const onFormSubmit = (result: boolean) => {
       if (result) {
         const payload = {
@@ -114,6 +106,5 @@ export default defineComponent({
       }
     }
   }
-  
 }
 </style>

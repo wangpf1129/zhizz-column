@@ -26,7 +26,7 @@
 <script lang="ts">
 import {defineComponent, onMounted, PropType, reactive} from 'vue';
 import {emitter} from '@/components/content/ValidateForm.vue';
-import {emailReg, passwordReg, RulesProp, TagProp} from '@/common/inputRules';
+import {emailReg, RulesProp, TagProp} from '@/common/inputRules';
 
 export default defineComponent({
   name: 'ValidateInput',
@@ -60,8 +60,8 @@ export default defineComponent({
             case 'email':
               passed = emailReg.test(inputRef.value);
               break;
-            case 'password':
-              passed = passwordReg.test(inputRef.value);
+            case 'custom':
+              passed = rule.validator ? rule.validator() : true;
               break;
             default:
               break;
