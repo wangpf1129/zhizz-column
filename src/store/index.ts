@@ -1,6 +1,7 @@
 import {Commit, createStore} from 'vuex';
 import axios from 'axios';
 
+
 export interface UserProps {
   isLogin: boolean;
   nickName?: string;
@@ -89,7 +90,6 @@ const store = createStore<GlobalDataProps>({
       state.isLoading = status;
     },
     setError(state, err: GlobalErrorProps) {
-      console.log(err);
       state.error = err;
     },
     login(state, rawData) {

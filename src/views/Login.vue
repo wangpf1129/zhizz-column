@@ -61,7 +61,7 @@ export default defineComponent({
           email: emailValue.value,
           password: passwordValue.value
         };
-        store.dispatch('loginAndFetchCurrentUser', payload).then(data => {
+        store.dispatch('loginAndFetchCurrentUser', payload).then(() => {
           createMessage('登录成功', 'success');
           router.push('/');
         }).catch(err => {

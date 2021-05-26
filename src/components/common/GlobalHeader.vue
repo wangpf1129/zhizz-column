@@ -13,7 +13,9 @@
           <drop-down :title="user.nickName">
             <drop-down-item path="/create">新建文章</drop-down-item>
             <drop-down-item> 编辑资料</drop-down-item>
-            <drop-down-item> 退出登录</drop-down-item>
+            <div @click="logout">
+              <drop-down-item> 退出登录</drop-down-item>
+            </div>
           </drop-down>
         </li>
       </ul>
@@ -25,7 +27,9 @@
 import {defineComponent, PropType} from 'vue';
 import DropDown from '@/components/content/DropDown.vue';
 import DropDownItem from '@/components/content/DropDownItem.vue';
-import {UserProps} from '@/store';
+import store, {UserProps} from '@/store';
+import router from '@/router';
+import {createMessage} from '@/components/content/createMessage';
 
 export default defineComponent({
   name: 'GlobalHeader',
@@ -35,6 +39,15 @@ export default defineComponent({
       type: Object as PropType<UserProps>,
       required: true
     }
+  },
+  setup() {
+    const logout = () => {
+      localStorage.clear();
+      store.state.user.isLogin = false;
+      router.push('/login');
+      createMessage('退出登录成功', 'success');
+    };
+    return {logout};
   }
 });
 </script>
